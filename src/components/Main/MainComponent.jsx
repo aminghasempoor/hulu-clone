@@ -27,8 +27,6 @@ function Main() {
         <div className="absolute w-full h-[700px] bg-gradient-to-r from-black" />
         <img
           className="w-full h-full object-fill"
-          width={200}
-          height={200}
           alt={movie?.title}
           src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
         />
