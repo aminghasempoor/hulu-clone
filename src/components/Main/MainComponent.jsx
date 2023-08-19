@@ -6,7 +6,7 @@ import { GET_ALL_MOVIES } from "@/core/data/apiRoutes";
 function Main() {
   const [movies, setMovies] = useState([]);
 
-  const movie = movies[2];
+  const movie = movies[Math.floor(Math.random() * movies.length)];
 
   useEffect(() => {
     axios.get(GET_ALL_MOVIES).then((response) => {

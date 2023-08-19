@@ -1,11 +1,15 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 function Movies({ item }) {
   const [like, setLike] = useState(false);
+  const router = useRouter();
 
   const handleClick = () => {
     const movieID = item.id;
+    console.log(movieID);
+    router.push(`/${movieID}`);
   };
 
   return (
