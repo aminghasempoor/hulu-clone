@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+import { GET_USER_TOKEN } from "@/core/data/apiRoutes";
 
 const LoginComponent = () => {
   const userRef = useRef();
@@ -26,12 +27,10 @@ const LoginComponent = () => {
     }
 
     // try {
-    //   console.log(username, password);
-
-    //   const response = await axios.post(
-    //     "http://192.168.1.115:8000/api/user_login",
-    //     { username: username, password: password }
-    //   );
+    //   const response = await axios.post(GET_USER_TOKEN, {
+    //     username: username,
+    //     password: password,
+    //   });
     //   console.log(response.data.token);
     //   console.log(username, password);
     //   setUsername("");

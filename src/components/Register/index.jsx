@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+import { USER_REGISTER } from "@/core/data/apiRoutes";
 
 const RegisterComponent = () => {
   const userRef = useRef();

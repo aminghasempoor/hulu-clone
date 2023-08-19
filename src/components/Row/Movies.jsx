@@ -1,10 +1,19 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 function Movies({ item }) {
   const [like, setLike] = useState(false);
+
+  const handleClick = () => {
+    const movieID = item.id;
+  };
+
   return (
-    <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
+    <div
+      onClick={handleClick}
+      className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
+    >
       <img
         src={`https://image.tmdb.org/t/p/w500${item?.backdrop_path}`}
         alt={item?.title}

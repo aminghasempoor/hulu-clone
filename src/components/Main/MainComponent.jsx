@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Request from "@/core/utils/Requests";
 import axios from "axios";
+import { GET_ALL_MOVIES } from "@/core/data/apiRoutes";
 
 function Main() {
   const [movies, setMovies] = useState([]);
