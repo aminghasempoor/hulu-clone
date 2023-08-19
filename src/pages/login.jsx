@@ -2,11 +2,7 @@ import LoginComponent from "@/components/Login";
 import React from "react";
 
 function login() {
-  return (
-    <div>
-      <LoginComponent />
-    </div>
-  );
+  return <LoginComponent />;
 }
 
 export default login;
