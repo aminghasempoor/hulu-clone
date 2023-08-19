@@ -17,6 +17,8 @@ const reducer = (state, action) => {
       return { ...state, password: action.password };
     case "SET_PASSWORDCONFIRMATION":
       return { ...state, passwordConfirmation: action.passwordConfirmation };
+    case "CLEAR_FORM":
+      return initialValue;
     default:
       return state;
   }
@@ -34,8 +36,11 @@ const useRegister = () => {
   const setPassword = useCallback((password) => {
     dispatch({ type: "SET_PASSWORD", password });
   }, []);
-  const setPasswordConfirmation = useCallback((password_confirmation) => {
-    dispatch({ type: "SET_PASSWORDCONFIRMATION", password_confirmation });
+  const setPasswordConfirmation = useCallback((passwordConfirmation) => {
+    dispatch({ type: "SET_PASSWORDCONFIRMATION", passwordConfirmation });
+  }, []);
+  const clearForm = useCallback(() => {
+    dispatch({ type: "CLEAR_FORM" });
   }, []);
 
   return {
@@ -48,6 +53,7 @@ const useRegister = () => {
     setEmail,
     setPassword,
     setPasswordConfirmation,
+    clearForm,
   };
 };
 export default useRegister;

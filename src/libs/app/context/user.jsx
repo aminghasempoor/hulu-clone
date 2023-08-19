@@ -1,3 +1,4 @@
+import { GET_USER_ROUTE } from "@/core/data/apiRoutes";
 import axios from "axios";
 import { createContext, useCallback, useEffect, useReducer } from "react";
 
@@ -61,13 +62,7 @@ export const UserProvider = ({ children }) => {
           if (typeof callback === "function") callback(data);
         })
         .catch((error) => {
-          if (error.response) {
-            errorResponse(error.response, clearToken, null, false);
-          } else if (error.request) {
-            errorRequest(null, false);
-          } else {
-            errorSetting(null, false);
-          }
+          console.log(error);
         });
     },
     [state.token]
@@ -82,7 +77,6 @@ export const UserProvider = ({ children }) => {
     if (!state.token) {
       clearUser();
       changeAuthState(false);
-      changeLanguageState(false);
       return;
     }
     getUser((data) => {

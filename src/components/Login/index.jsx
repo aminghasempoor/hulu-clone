@@ -1,14 +1,16 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { GET_USER_TOKEN } from "@/core/data/apiRoutes";
+import useLogin from "@/libs/app/hooks/useLogin";
+import useUser from "@/libs/app/hooks/useUser";
 
 const LoginComponent = () => {
   const userRef = useRef();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [people, setPeople] = useState([]);
+  const { username, password, setUsername, setPassword, clearForm } =
+    useLogin();
+  const { setToken } = useUser();
 
   useEffect(() => {
     userRef.current.focus();
@@ -17,28 +19,20 @@ const LoginComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username && password) {
-      const person = { username, password };
-      setPeople((people) => {
-        return [...people, person];
-      });
+      try {
+        const response = await axios.post(GET_USER_TOKEN, {
+          username: username,
+          password: password,
+        });
+        clearForm();
+        setToken(response.data.token);
+      } catch (err) {
+        alert(err);
+      }
     } else {
       alert("Invalid Input !!!");
       return;
     }
-
-    // try {
-    //   const response = await axios.post(GET_USER_TOKEN, {
-    //     username: username,
-    //     password: password,
-    //   });
-    //   console.log(response.data.token);
-    //   console.log(username, password);
-    //   setUsername("");
-    //   setPassword("");
-    // } catch (err) {
-    //   console.log(err);
-    //   console.log(username, password);
-    // }
   };
 
   return (

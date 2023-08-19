@@ -2,7 +2,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 // user data
-export const GET_USER_ROUTE = BASE_URL + "/api/profile_info";
+export const GET_USER_ROUTE = BASE_URL + "/api/profile/user_info";
 //end user data
 
 //login

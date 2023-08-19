@@ -11,6 +11,8 @@ const reducer = (state, action) => {
       return { ...state, username: action.username };
     case "SET_PASSWORD":
       return { ...state, password: action.password };
+    case "CLEAR_FORM":
+      return initialValue;
     default:
       return state;
   }
@@ -25,6 +27,9 @@ const useLogin = () => {
   const setPassword = useCallback((password) => {
     dispatch({ type: "SET_PASSWORD", password });
   }, []);
+  const clearForm = useCallback(() => {
+    dispatch({ type: "CLEAR_FORM" });
+  }, []);
 
   return {
     state,
@@ -32,6 +37,7 @@ const useLogin = () => {
     password: state.password,
     setUsername,
     setPassword,
+    clearForm,
   };
 };
 export default useLogin;

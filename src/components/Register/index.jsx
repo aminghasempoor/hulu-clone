@@ -1,16 +1,24 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { USER_REGISTER } from "@/core/data/apiRoutes";
+import useRegister from "@/libs/app/hooks/useRegister";
 
 const RegisterComponent = () => {
   const userRef = useRef();
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [people, setPeople] = useState([]);
+  const {
+    firstName,
+    email,
+    password,
+    passwordConfirmation,
+    setFirstName,
+    setEmail,
+    setPassword,
+    setPasswordConfirmation,
+    clearForm,
+  } = useRegister();
+
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -19,42 +27,35 @@ const RegisterComponent = () => {
     e.preventDefault();
     if (password === passwordConfirmation) {
       if (firstName && email && password && passwordConfirmation) {
-        const person = { firstName, email, password, passwordConfirmation };
-        setPeople((people) => {
-          return [...people, person];
-        });
-        setEmail("");
-        setFirstName("");
-        setPassword("");
-        setPasswordConfirmation("");
+        try {
+          const response = await axios.post(
+            USER_REGISTER,
+            {
+              username: firstName,
+              email: email,
+              password: password,
+              password_confirmation: passwordConfirmation,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+          console.log(response.data.token);
+          console.log(JSON.stringify(response));
+          clearForm();
+        } catch (err) {
+          console.log(err.response.data.message);
+          alert(err.response.data.message);
+        }
       } else {
         alert("Invalid Input !!!");
       }
+    } else {
+      alert("password and password confirmation should match");
     }
-
-    // try {
-    //   const response = await axios.post(
-    //     "http://192.168.1.150:8000/api/register",
-    //     {
-    //       name: firstName,
-    //       email: email,
-    //       password: password,
-    //       password_confirmation: passwordConfirmation,
-    //     },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //       },
-    //     }
-    //   );
-    //   console.log(response.data.token);
-    //   console.log(JSON.stringify(response));
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     alert("err");
-    //   }
-    // }
   };
   return (
     <div>
