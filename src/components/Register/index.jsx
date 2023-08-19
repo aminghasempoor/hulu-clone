@@ -31,29 +31,29 @@ const RegisterComponent = () => {
       }
     }
 
-    try {
-      const response = await axios.post(
-        "http://192.168.1.150:8000/api/register",
-        {
-          name: firstName,
-          email: email,
-          password: password,
-          password_confirmation: passwordConfirmation,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-      console.log(response.data.token);
-      console.log(JSON.stringify(response));
-    } catch (err) {
-      if (!err?.response) {
-        alert("err");
-      }
-    }
+    // try {
+    //   const response = await axios.post(
+    //     "http://192.168.1.150:8000/api/register",
+    //     {
+    //       name: firstName,
+    //       email: email,
+    //       password: password,
+    //       password_confirmation: passwordConfirmation,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //       },
+    //     }
+    //   );
+    //   console.log(response.data.token);
+    //   console.log(JSON.stringify(response));
+    // } catch (err) {
+    //   if (!err?.response) {
+    //     alert("err");
+    //   }
+    // }
   };
   return (
     <div>
