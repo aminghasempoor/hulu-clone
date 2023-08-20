@@ -1,12 +1,19 @@
+import useUser from "@/libs/app/hooks/useUser";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
+import NavBarLogOut from "./NavBarLogOut";
+import NavBarEnter from "./NavBarEnter";
 
 function NavBar(props) {
   const [showMenu, setShowMenu] = useState(false);
+  const { isAuth, clearToken } = useUser();
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+  };
+  const handleClick = () => {
+    clearToken();
   };
 
   return (
@@ -25,29 +32,11 @@ function NavBar(props) {
             <FaBars />
           </button>
         </div>
-        <div className="hidden md:block">
-          {" "}
-          {/* Show on medium and larger screens */}
-          <Link href="/login" className="text-white pr-4">
-            Sign In
-          </Link>
-          <Link
-            href="/register"
-            className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white"
-          >
-            Sign Up
-          </Link>
-        </div>
+        {isAuth ? <NavBarLogOut handleClick={handleClick} /> : <NavBarEnter />}
       </div>
       {/* Conditional rendering based on showMenu state */}
-      {showMenu && (
-        <div className="md:hidden py-10 flex flex-col items-center justify-center">
-          <button className="text-white block mb-2">Sign In</button>
-          <button className="bg-red-600 px-6 py-2 rounded block text-white">
-            Sign Up
-          </button>
-        </div>
-      )}
+      {showMenu &&
+        (isAuth ? <NavBarLogOut handleClick={handleClick} /> : <NavBarEnter />)}
       {props.children}
     </div>
   );

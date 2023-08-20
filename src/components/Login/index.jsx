@@ -38,7 +38,7 @@ const LoginComponent = () => {
   return (
     <div className="w-full h-screen">
       <Image
-        className=" sm:block absolute w-full h-full object-cover"
+        className="sm:block absolute w-full h-full object-cover"
         width={1000}
         height={1000}
         src="/register.jpg"
