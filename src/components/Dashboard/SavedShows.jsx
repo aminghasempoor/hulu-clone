@@ -34,7 +34,7 @@ function SavedShows() {
           id={"slider"}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          {favoriteMovies ? (
+          {favoriteMovies[0] ? (
             favoriteMovies.map((item) => (
               <div
                 key={item.id}
@@ -44,7 +44,9 @@ function SavedShows() {
               </div>
             ))
           ) : (
-            <h1>There is no saved movies</h1>
+            <h3 className="text-white font-bold md:text-xl p-4">
+              There is no saved movies ...
+            </h3>
           )}
         </div>
         <MdChevronRight

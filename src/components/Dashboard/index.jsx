@@ -2,8 +2,16 @@ import SavedShows from "./SavedShows";
 import Image from "next/image";
 import UserInfo from "./UserInfo";
 import useUser from "@/libs/app/hooks/useUser";
+import axios from "axios";
 
 function DashboardComponent() {
+  axios
+    .get("http://192.168.1.127:8000/api/roles", {
+      headers: {
+        Authorization: "Bearer 7|Iq0hgQRt5zIMt4yFF0tjUdc9gzY5IEv669pe5JS7",
+      },
+    })
+    .then((response) => JSON.stringify(response));
   return (
     <>
       <div className="w-full text-white">

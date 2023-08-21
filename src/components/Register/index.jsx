@@ -1,12 +1,20 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { USER_REGISTER } from "@/core/data/apiRoutes";
 import useRegister from "@/libs/app/hooks/useRegister";
+import { useRouter } from "next/router";
+import useUser from "@/libs/app/hooks/useUser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BounceLoader } from "react-spinners";
 
 const RegisterComponent = () => {
+  const router = useRouter();
   const userRef = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { setToken } = useUser();
   const {
     firstName,
     email,
@@ -24,37 +32,36 @@ const RegisterComponent = () => {
   }, []);
 
   const handleSubmit = async (e) => {
+    setIsSubmitting(true); // Start submitting
     e.preventDefault();
-    if (password === passwordConfirmation) {
-      if (firstName && email && password && passwordConfirmation) {
-        try {
-          const response = await axios.post(
-            USER_REGISTER,
-            {
-              username: firstName,
-              email: email,
-              password: password,
-              password_confirmation: passwordConfirmation,
+
+    if (firstName && email && password && passwordConfirmation) {
+      try {
+        const response = await axios.post(
+          USER_REGISTER,
+          {
+            username: firstName,
+            email: email,
+            password: password,
+            password_confirmation: passwordConfirmation,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
             },
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          );
-          console.log(response.data.token);
-          console.log(JSON.stringify(response));
-          clearForm();
-        } catch (err) {
-          console.log(err.response.data.message);
-          alert(err.response.data.message);
-        }
-      } else {
-        alert("Invalid Input !!!");
+          }
+        );
+        clearForm();
+        setToken(response.data.token);
+        router.push("/dashboard");
+      } catch (err) {
+        toast.error(err.response.data.message || "Server Error");
+      } finally {
+        setIsSubmitting(false); // Stop submitting
       }
     } else {
-      alert("password and password confirmation should match");
+      toast.error("complete all fields");
     }
   };
   return (
@@ -68,8 +75,8 @@ const RegisterComponent = () => {
       />
       <div className="bg-black/60 fixed top-0 left-0 w-full h-screen"></div>
       <div className="fixed w-full h-full px-4 py-6 sm:w-full z-50">
-        <div className="max-w-[450px] max-h-[850px] my-24 mx-auto bg-black/75 text-white">
-          <div className="max-w-[320px] py-8 mx-auto">
+        <div className="max-w-[400px] max-h-[850px] my-24 mx-auto bg-black/75 text-white">
+          <div className="max-w-[300px] py-8 mx-auto">
             <h1 className="text-3xl font-bold px-1">Sign Up</h1>
             <form
               className="w-full h-auto flex flex-col py-4 px-1"
@@ -165,8 +172,18 @@ const RegisterComponent = () => {
               <button
                 className="bg-red-600 py-3 my-6 rounded font-bold hover:border-white hover:border-2"
                 type="submit"
+                disabled={isSubmitting}
               >
-                Submit
+                {isSubmitting ? (
+                  <BounceLoader
+                    color={"#ffffff"}
+                    loading={isSubmitting}
+                    size={30}
+                    className="ml-[45%]"
+                  />
+                ) : (
+                  "Submit"
+                )}
               </button>
               <div className="flex justify-between items-center text-sm">
                 <p>
@@ -190,6 +207,7 @@ const RegisterComponent = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
