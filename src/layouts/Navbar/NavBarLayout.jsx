@@ -20,7 +20,7 @@ function NavBar(props) {
     <div>
       <div className="flex items-center justify-between p-4 z-[100] w-full absolute">
         <Link
-          href="/"
+          href="/first"
           className="text-red-600 text-2xl sm:text-3xl md:text-4xl font-bold cursor-pointer"
         >
           NETFLIX

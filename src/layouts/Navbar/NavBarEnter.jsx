@@ -4,7 +4,7 @@ function NavBarEnter() {
   return (
     <div className="hidden md:block">
       {/* Show on medium and larger screens */}
-      <Link href="/login" className="text-white pr-4">
+      <Link href="/user-login" className="text-white pr-4">
         Sign In
       </Link>
       <Link

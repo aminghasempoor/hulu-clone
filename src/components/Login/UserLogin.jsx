@@ -10,7 +10,7 @@ import { BounceLoader } from "react-spinners";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const LoginComponent = () => {
+const UserLoginComponent = () => {
   const userRef = useRef();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,7 +60,7 @@ const LoginComponent = () => {
       <div className="fixed px-4 py-10 sm:w-full w-full h-full z-50">
         <div className=" max-w-[400px] h-[500px] my-32 mx-auto bg-black/75 text-white">
           <div className="max-w-[300px] mx-auto py-14">
-            <h1 className="text-3xl font-bold mx-1">Sign IN</h1>
+            <h1 className="text-3xl font-bold mx-1">Users</h1>
             <form
               className="w-full flex flex-col py-4 sm:w-auto px-3"
               onSubmit={handleSubmit}
@@ -151,4 +151,4 @@ const LoginComponent = () => {
   );
 };
 
-export default LoginComponent;
+export default UserLoginComponent;
