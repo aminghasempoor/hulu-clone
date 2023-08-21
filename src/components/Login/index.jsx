@@ -1,13 +1,18 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { GET_USER_TOKEN } from "@/core/data/apiRoutes";
 import useLogin from "@/libs/app/hooks/useLogin";
 import useUser from "@/libs/app/hooks/useUser";
+import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginComponent = () => {
   const userRef = useRef();
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { username, password, setUsername, setPassword, clearForm } =
     useLogin();
   const { setToken } = useUser();
@@ -17,6 +22,7 @@ const LoginComponent = () => {
   }, []);
 
   const handleSubmit = async (e) => {
+    setIsSubmitting(true); // Start submitting
     e.preventDefault();
     if (username && password) {
       try {
@@ -26,8 +32,11 @@ const LoginComponent = () => {
         });
         clearForm();
         setToken(response.data.token);
+        router.push("/dashboard");
       } catch (err) {
-        alert(err);
+        toast.error("An error occurred. Please try again.");
+      } finally {
+        setIsSubmitting(false); // Stop submitting
       }
     } else {
       alert("Invalid Input !!!");
@@ -99,8 +108,9 @@ const LoginComponent = () => {
               <button
                 className="bg-red-600 py-3 my-6 rounded font-bold hover:border-white hover:border-2"
                 type="submit"
+                disabled={isSubmitting}
               >
-                Submit
+                {isSubmitting ? "Submitting..." : "Submit"}
               </button>
               <div className="flex justify-between items-center text-sm">
                 <p>
@@ -124,6 +134,7 @@ const LoginComponent = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

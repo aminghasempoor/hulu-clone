@@ -1,7 +1,6 @@
 import Main from "@/components/Main/MainComponent";
 import Row from "@/components/Row/RowComponent";
 import { GET_ALL_MOVIES } from "@/core/data/apiRoutes";
-import Request from "@/core/utils/Requests";
 
 export default function Home() {
   return (

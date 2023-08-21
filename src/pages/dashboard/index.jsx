@@ -1,11 +1,10 @@
 import DashboardComponent from "@/components/Dashboard";
+import WithAuthMiddleware from "@/middlewares/WithAuth";
 
-function dashboard() {
+export default function Dashboard() {
   return (
-    <div>
+    <WithAuthMiddleware>
       <DashboardComponent />
-    </div>
+    </WithAuthMiddleware>
   );
 }
-
-export default dashboard;
