@@ -14,14 +14,12 @@ function CenterLayout(props) {
       />
       <div className="bg-black/60 fixed top-0 left-0 w-full h-screen" />
       <div className="text-xl sm:text-2xl px-3 md:text-3xl fixed top-[40%] text-center text-white">
-        <h1 className="py-7">
-          Your Access To This Page Has Expired Please Login Again
-        </h1>
+        <h1 className="py-7">{props.title}</h1>
         <Link
           className="bg-red-600 px-3 md:px-6 py-1 rounded cursor-pointer text-white"
-          href={"/login"}
+          href={`/${props.link}`}
         >
-          Login
+          {props.link}
         </Link>
       </div>
 
