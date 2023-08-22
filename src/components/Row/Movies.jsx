@@ -1,5 +1,4 @@
 import { ADD_FAVORITE_MOVIE } from "@/core/data/apiRoutes";
-import useFavorites from "@/libs/app/hooks/useFavorites";
 import useUser from "@/libs/app/hooks/useUser";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -12,7 +11,6 @@ function Movies({ item }) {
   const [like, setLike] = useState(false);
   const router = useRouter();
   const { user, token } = useUser();
-  const { userFavorite } = useFavorites();
 
   const handleClick = () => {
     const movieID = item.id;

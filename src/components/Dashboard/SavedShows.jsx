@@ -1,15 +1,11 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import useUser from "@/libs/app/hooks/useUser";
-
 import SavedShowItems from "./SavedShowItems";
-import { useEffect, useState } from "react";
+import useFavorites from "@/libs/app/hooks/useFavorites";
 
 function SavedShows() {
   const { user } = useUser();
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
-  useEffect(() => {
-    setFavoriteMovies(user.favorite_movies);
-  }, []);
+  const { userFavoriteMovies } = useFavorites();
 
   const SlideLeft = () => {
     var slider = document.getElementById("slider");
@@ -34,8 +30,8 @@ function SavedShows() {
           id={"slider"}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          {favoriteMovies[0] ? (
-            favoriteMovies.map((item) => (
+          {userFavoriteMovies ? (
+            userFavoriteMovies.map((item) => (
               <div
                 key={item.id}
                 className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
