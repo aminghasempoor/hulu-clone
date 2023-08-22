@@ -1,4 +1,4 @@
-import DashboardComponent from "@/components/Dashboard";
+import DashboardComponent from "@/components/UserDashboard";
 import WithAuthMiddleware from "@/middlewares/WithAuth";
 
 export default function Dashboard() {
