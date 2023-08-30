@@ -1,9 +1,11 @@
+import TitlePage from "@/core/components/TitlePage";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="w-full h-screen">
+      <TitlePage text="Get Started" />
       <Image
         className="sm:block absolute w-full h-full object-cover"
         width={1000}

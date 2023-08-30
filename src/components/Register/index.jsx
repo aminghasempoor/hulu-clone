@@ -197,7 +197,7 @@ const RegisterComponent = () => {
                   Already Registered ?
                   <Link
                     className="text-white mx-2 hover:text-red-300"
-                    href="/login"
+                    href="/user-login"
                   >
                     Sign In
                   </Link>

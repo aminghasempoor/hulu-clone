@@ -1,5 +1,6 @@
 import Main from "@/components/Main/MainComponent";
 import Row from "@/components/Row/RowComponent";
+import TitlePage from "@/core/components/TitlePage";
 import {
   GET_ACTION_MOVIE,
   GET_ALL_MOVIES,
@@ -10,6 +11,7 @@ import {
 function first() {
   return (
     <div>
+      <TitlePage text="First Page" />
       <Main />
       <Row rowID="5" title="Action" fetchURL={GET_ACTION_MOVIE} />
       <Row rowID="2" title="Drama" fetchURL={GET_DRAMA_MOVIE} />
