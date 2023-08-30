@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Request from "@/core/utils/Requests";
 import axios from "axios";
-import { GET_ALL_MOVIES } from "@/core/data/apiRoutes";
+import { GET_ALL_MOVIES, GET_MOVIES_IMAGE } from "@/core/data/apiRoutes";
 
 function Main() {
   const [movies, setMovies] = useState([]);
@@ -29,7 +28,7 @@ function Main() {
         <img
           className="w-full h-full object-fill"
           alt={movie?.title}
-          src={`${movie?.image}`}
+          src={`${GET_MOVIES_IMAGE}/${movie?.image}`}
         />
         <div className="absolute w-full top-[20%] p-4 md:p-8">
           <h1 className="text-3xl md:text-5xl font-bold">{movie?.title}</h1>

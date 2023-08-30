@@ -1,4 +1,4 @@
-import { ADD_FAVORITE_MOVIE } from "@/core/data/apiRoutes";
+import { ADD_FAVORITE_MOVIE, GET_MOVIES_IMAGE } from "@/core/data/apiRoutes";
 import useUser from "@/libs/app/hooks/useUser";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -14,7 +14,6 @@ function Movies({ item }) {
 
   const handleClick = () => {
     const movieID = item.id;
-    console.log(movieID);
     router.push(`/${movieID}`);
   };
 
@@ -43,11 +42,11 @@ function Movies({ item }) {
   };
 
   return (
-    <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
+    <div className="w-[160px] h-[150px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
       <img
-        src={`https://image.tmdb.org/t/p/w500${item?.image}`}
+        src={`${GET_MOVIES_IMAGE}/${item?.image}`}
         alt={item?.title}
-        className="w-full h-auto block"
+        className="h-full w-full object-contain block"
       />
       <div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white">
         <p

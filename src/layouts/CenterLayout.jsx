@@ -18,7 +18,7 @@ function CenterLayout(props) {
           className="bg-red-600 px-3 md:px-6 py-1 rounded cursor-pointer text-white"
           href={`/${props.link}`}
         >
-          {props.link}
+          Login
         </Link>
       </div>
 

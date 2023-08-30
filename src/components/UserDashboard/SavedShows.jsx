@@ -1,10 +1,8 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import useUser from "@/libs/app/hooks/useUser";
 import SavedShowItems from "./SavedShowItems";
 import useFavorites from "@/libs/app/hooks/useFavorites";
 
 function SavedShows() {
-  const { user } = useUser();
   const { userFavoriteMovies } = useFavorites();
 
   const SlideLeft = () => {
@@ -23,7 +21,7 @@ function SavedShows() {
       <div className="relative flex items-center group">
         <MdChevronLeft
           onClick={SlideLeft}
-          className="bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className="bg-black left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
           size={40}
         />
         <div
@@ -47,7 +45,7 @@ function SavedShows() {
         </div>
         <MdChevronRight
           onClick={SlideRight}
-          className="bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className="bg-black right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
           size={40}
         />
       </div>

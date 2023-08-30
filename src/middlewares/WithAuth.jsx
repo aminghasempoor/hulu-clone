@@ -8,7 +8,7 @@ const WithAuthMiddleware = ({ children }) => {
     return (
       <CenterLayout
         title="Your Access To This Page Has Expired Please Login Again"
-        link="login"
+        link="user-login"
       />
     );
   }
