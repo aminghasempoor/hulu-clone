@@ -42,5 +42,5 @@ export const GET_COMEDY_MOVIE = BASE_URL + "/api/category/comedy";
 //end comedy movie
 
 //add favorite movie
-export const ADD_FAVORITE_MOVIE = BASE_URL + "/api/profile/user_favorite_movie";
+export const ADD_FAVORITE_MOVIE = BASE_URL + "/api/profile/add_favorite_movie";
 //add favorite movie
